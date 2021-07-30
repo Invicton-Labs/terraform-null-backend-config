@@ -28,5 +28,5 @@ module "assert_default_unlocked" {
 }
 
 locals {
-  default_state = var.fetch_raw_state && length(module.read_local_state) > 0 ? (module.read_local_state[0].exitstatus == 0 ? jsondecode(module.read_local_state[0].stdout) : null) : null
+  default_state = var.fetch_raw_state && length(module.read_local_state) > 0 && module.assert_default_unlocked.checked ? (module.read_local_state[0].exitstatus == 0 ? jsondecode(module.read_local_state[0].stdout) : null) : null
 }

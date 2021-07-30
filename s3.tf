@@ -4,8 +4,8 @@ locals {
 
 provider "aws" {
   alias      = "backend"
-  access_key = local.is_s3 ? local.backend.config.access_key : null
-  secret_key = local.is_s3 ? local.backend.config.secret_key : null
+  access_key = local.is_s3 ? local.backend.config.access_key : "1"
+  secret_key = local.is_s3 ? local.backend.config.secret_key : "A"
   region     = local.is_s3 ? local.backend.config.region : "us-east-1"
   profile    = local.is_s3 ? local.backend.config.profile : null
   assume_role {
@@ -27,9 +27,10 @@ provider "aws" {
   shared_credentials_file     = local.is_s3 ? local.backend.config.shared_credentials_file : null
   token                       = local.is_s3 ? local.backend.config.token : null
   max_retries                 = local.is_s3 ? local.backend.config.max_retries : null
-  skip_credentials_validation = local.is_s3 ? local.backend.config.skip_credentials_validation : null
-  skip_metadata_api_check     = local.is_s3 ? local.backend.config.skip_metadata_api_check : null
-  skip_region_validation      = local.is_s3 ? local.backend.config.skip_region_validation : null
+  skip_credentials_validation = true
+  skip_metadata_api_check     = true
+  skip_region_validation      = true
+  skip_requesting_account_id  = true
   s3_force_path_style         = local.is_s3 ? local.backend.config.force_path_style : null
 }
 
