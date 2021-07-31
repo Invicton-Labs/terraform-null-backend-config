@@ -14,6 +14,7 @@ Usage:
 ```
 module "backend_config" {
   source = "Invicton-Labs/backend-config/null"
+  
   // Whether to retrieve the remote state (using the same configuration/credentials as the backend)
   fetch_remote_state = true
 }
