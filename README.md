@@ -13,14 +13,13 @@ Current state:
 Usage:
 ```
 module "backend_config" {
-  source  = "Invicton-Labs/backend-config/null"
-  fetch_output_state = true
-  // Currently only supported for S3 and local backends
-  fetch_raw_state = false
+  source = "Invicton-Labs/backend-config/null"
+  // Whether to retrieve the remote state (using the same configuration/credentials as the backend)
+  fetch_remote_state = true
 }
 
 output "backend_config" {
-    value = module.init_config
+  value = module.backend_config
 }
 ```
 
@@ -38,10 +37,9 @@ backend_config = {
           ...
       }
   }
-  "output_state" = {
+  "remote_state" = {
       // Equivalent output to the terraform_remote_state data source's `outputs` field
   }
-  "raw_state" = null
   "workspace" = "myworkspace"
 }
 ```
